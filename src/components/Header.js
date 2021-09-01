@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
+  const [clicked, setClicked] = useState("");
+
   return (
-    <div className="flex flex-row justify-between items-center border-b-2 border-black py-2">
-      <h1 className="text-3xl">Watch2Gether</h1>
+    <div className="flex flex-row flex-none justify-between items-center border-b-2 border-black py-2">
+      <Link to="/">
+        <h1 className="text-3xl cursor-pointer" onClick={() => setClicked("")}>
+          Watch2Gether
+        </h1>
+      </Link>
       <div>
-        <button className="transition duration-200 border-2 border-black rounded mr-2 px-3 py-2 hover:bg-gray-200">
-          <div>
+        <Link to="log-in">
+          <button
+            className={`btn ${clicked === "log-in" ? "bg-gray-200" : ""}`}
+            onClick={() => setClicked("log-in")}
+          >
             <span className="pr-1">Sign In</span>
             <FontAwesomeIcon icon={faSignInAlt} />
-          </div>
-        </button>
-        <button className="transition duration-200 border-2 border-black rounded ml-2 px-3 py-2 hover:bg-gray-200">
-          <span className="pr-1">Sign Up</span>
-          <FontAwesomeIcon icon={faUserPlus} />
-        </button>
+          </button>
+        </Link>
+        <Link to="sign-up">
+          <button
+            className={`btn ${clicked === "sign-up" ? "bg-gray-200" : ""}`}
+            onClick={() => setClicked("sign-up")}
+          >
+            <span className="pr-1">Sign Up</span>
+            <FontAwesomeIcon icon={faUserPlus} />
+          </button>
+        </Link>
       </div>
     </div>
   );

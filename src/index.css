@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply transition duration-200 border-2 border-black rounded mr-2 p-3 hover:bg-gray-200;
+}
